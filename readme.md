@@ -1,3 +1,4 @@
-Learning Node Project
+learningNode
+============
 
-A little project to help me get familiar with bootstrapping a node server and linking in the express framework.
+A node learning programming project.
