@@ -17,14 +17,12 @@ app.configure(function() {
 
 // Just send all requests here to the single app page.
 app.get('/', function(req, res) {
-	res.render('index.jade');	
+	res.render('index');	
 });
 
 app.use(function(req, res, next) {
 	console.log(req.path);
-	res.status(404);
-	res.render('404NotFound.jade');
-	// res.send(404, "Unable to find resource");
+	res.status(404).render('404NotFound.jade');
 });
 
 var start = function(port) {
