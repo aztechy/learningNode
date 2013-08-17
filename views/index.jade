@@ -4,11 +4,6 @@ html(ng-app="learningApp")
     title="Learning Node App"
     script(src="/lib/angular/angular.js")
   body
-    div
-      label Name:
-      input(type="text", placeholder="Enter your name", ng-model="yourName")
-      h1 Hello {{yourName}}
-    
     div(ng-view)
   script(src="/js/app.js")
   script(src="/js/controllers.js")
