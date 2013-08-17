@@ -1,22 +1,28 @@
 // Load up our express framework and define routing and file location logic
-
 var express = require('express'),
 	  app = express();
 
 app.configure(function() {
 	app.set('title', 'Learning Node Application');
 	
-	if ('development' == app.get('env')) {
-		app.set('db uri', 'localhost/dev');
-	}
+	// Define where we'll get static content
+	app.use(express.static('public'));
 	
-	// Define where we'll get content
-	app.use(express.static(__dirname + '/public'));
+	// Setup our default templating engine.
+	app.set('view engine', 'jade');
+	app.use('views', __dirname + '/views');
+	app.use(express.bodyParser());
+	app.use(express.methodOverride());
 });
 
-app.get('/hello', function(req, res) {
-	console.log(app.routes);
-	res.send('Hello world');
+// Just send all requests here to the single app page.
+app.get('/', function(req, res) {
+	res.render('index.jade');	
+});
+
+app.use(function(req, res, next) {
+	console.log(req.path);
+	res.send(404, "Unable to find resource");
 });
 
 var start = function(port) {

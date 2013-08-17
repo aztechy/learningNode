@@ -1,9 +1,10 @@
 {
-  "name": "Wtf",
-  "description": "hello world test app",
+  "name": "LearningNode",
+  "description": "App to learn setting up a MEAN stack",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "3.x"
+    "express": "3.x",
+		"jade": "0.34.x"
   }
 }
