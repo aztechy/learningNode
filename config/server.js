@@ -22,7 +22,9 @@ app.get('/', function(req, res) {
 
 app.use(function(req, res, next) {
 	console.log(req.path);
-	res.send(404, "Unable to find resource");
+	res.status(404);
+	res.render('404NotFound.jade');
+	// res.send(404, "Unable to find resource");
 });
 
 var start = function(port) {
