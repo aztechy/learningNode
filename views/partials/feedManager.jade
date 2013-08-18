@@ -1,7 +1,9 @@
 div#feedContainer
   div(ng-show="feed.length") The Feed!
   ul(ng-repeat="item in feed")
-    li {{item.name}}
+    li
+      div {{item.text}}
+      div {{item.source}}
 
 hr
 

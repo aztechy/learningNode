@@ -1,6 +1,9 @@
 // Load up our express framework and define routing and file location logic
 var express = require('express'),
-	  app = express();
+	  app = express(),
+		server = require('http').createServer(app);
+		io = require('socket.io').listen(server),
+		twitterModule = require('./modules/twitterModule');
 
 app.configure(function() {
 	app.set('title', 'Learning Node Application');
@@ -29,14 +32,18 @@ app.get('*', function(req, res) {
 	res.render('index');
 });
 
-// Look into moving this into angulars routing
-// app.use(function(req, res, next) {
-// 	console.log(req.path);
-// 	res.status(404).render('404NotFound.jade');
-// });
+io.sockets.on('connection', function(socket) {
+	var twit = twitterModule.twit;
+	twit.stream('statuses/filter', {'locations':'-80.10,26.10,-80.05,26.15'},
+		function(stream) {
+			stream.on('data', function(data) {
+				socket.emit('tweet', data);
+			});
+		});
+});
 
 var start = function(port) {
-	app.listen(port);
+	server.listen(port);
 	console.log('Server started and waiting for requests on localhost:' + port);	
 }
 

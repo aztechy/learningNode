@@ -1,7 +1,11 @@
 'use strict'
 
-var Controller1 = function($scope) {
+var Controller1 = function($scope, socket) {
 	console.log('Controller 1 loaded');
+	socket.on('tweet', function(data) {
+		$scope.feed.unshift(data);
+	});
+	
 	$scope.feed = [];
 	
 	$scope.addFeedItem = function(itemName) {

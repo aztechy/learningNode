@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('learningApp', []).
+var app = angular.module('learningApp', []).
 	config(function($routeProvider, $locationProvider) {
 		$routeProvider.
 			when('/feedManager', {
