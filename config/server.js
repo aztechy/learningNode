@@ -20,10 +20,20 @@ app.get('/', function(req, res) {
 	res.render('index');	
 });
 
-app.use(function(req, res, next) {
-	console.log(req.path);
-	res.status(404).render('404NotFound.jade');
+app.get('/partials/:name', function (req, res) {
+  var name = req.params.name;
+  res.render('partials/' + name);
 });
+
+app.get('*', function(req, res) {
+	res.render('index');
+});
+
+// Look into moving this into angulars routing
+// app.use(function(req, res, next) {
+// 	console.log(req.path);
+// 	res.status(404).render('404NotFound.jade');
+// });
 
 var start = function(port) {
 	app.listen(port);

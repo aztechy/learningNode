@@ -1,0 +1,12 @@
+div#feedContainer
+  div(ng-show="feed.length") The Feed!
+  ul(ng-repeat="item in feed")
+    li {{item.name}}
+
+hr
+
+div Feed Simulator
+div
+  form(ng-submit="addFeedItem(feedItemName)")
+    input(type="text", name="feedItemName", placeholder="Enter in a new item", ng-model="feedItemName");
+    button(type="button", ng-click="addFeedItem(feedItemName)") Add Item
