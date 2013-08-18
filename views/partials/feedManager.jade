@@ -1,5 +1,12 @@
 div#feedContainer
-  div(ng-show="feed.length") The Feed!
+  div(ng-show="streamToggle") There are {{pausedFeed.length}} item(s) 
+    span(ng-click="updateFeed()") Update
+  label(for="streamControlOn") On
+  input(type="radio", name="streamControlOn", value="1", ng-model="streamToggle", ng-click="toggleFeed()")
+
+  label(for="streamControlOff") Off
+  input(type="radio", name="streamControlOff", value="0", ng-model="streamToggle", ng-click="toggleFeed()")
+      
   ul(ng-repeat="item in feed")
     li
       div {{item.text}}
