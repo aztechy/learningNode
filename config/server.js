@@ -37,9 +37,9 @@ io.sockets.on('connection', function(socket) {
 	twit.stream('statuses/filter', {'locations':'-80.10,26.10,-80.05,26.15'},
 		function(stream) {
 			stream.on('data', function(data) {
-				socket.emit('tweet', data);
+				io.sockets.emit('tweet', data);
 			});
-		});
+	});	
 });
 
 var start = function(port) {
